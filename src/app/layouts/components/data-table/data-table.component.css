@@ -1,0 +1,9 @@
+.custom-table .p-column-header {
+  border-radius: 10px; /* Adjust the radius as needed */
+  overflow: hidden;
+}
+
+.custom-table .p-column-title {
+  border-radius: 10px; /* Adjust the radius as needed */
+  overflow: hidden;
+}

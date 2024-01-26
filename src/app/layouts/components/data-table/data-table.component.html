@@ -1,0 +1,37 @@
+<p-table [value]='posts' [tableStyle]="{ 'min-width': '50rem', 'margin-top' : '50px' }" *ngIf="!error"
+    styleClass="custom-table">
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let postHeader of postHeaders">
+                <div *ngIf="!skeleton">{{postHeader}}</div>
+                <div *ngIf="skeleton"><p-skeleton></p-skeleton></div>
+            </th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-post>
+        <tr>
+            <td *ngFor=" let dataCell of post | keyvalue; let i = index">
+                <div *ngIf="!skeleton"> {{ dataCell.value }} , {{posts.length}} </div>
+                <p-skeleton *ngIf="skeleton"></p-skeleton>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <p-button label="Delete Data" (click)="deletePosts()" styleClass="bg-danger rounded m-2"> </p-button>
+
+    </ng-template>
+</p-table>
+<div *ngIf="error && isItOkayToShowError" class="alert alert-danger mt-2">
+    <h1> Data Table Not Loaded!</h1>
+    <p>{{error}}</p>
+    <p-button label="Got It" (click)="isItOkayToShowError = false"></p-button>
+</div>
+
+
+
+<!-- 
+    May be you should use value attr with primeng for the body cell to appear
+    if the value property is defined in the primeNg Table then the  body will loop over it implicitly, so if you loop over the rows that means the number
+    of rows will be duplicated
+ -->
